@@ -53,13 +53,10 @@ const SubmitButton = styled.button`
   margin-bottom: 10px;
 `;
 
-const DEV_TOKEN1 = "5fe5fac7-9fb9-40ba-b448-667affa8cdae";
-const DEV_PET1 = "PT.10662";
-const DEV_OS = "IOS";
-const DEV_VERSION = "36";
-const DEV_MARGINB = "0";
-const DEV_MARGINT = "30";
-const DEV_USERID = "A.8864";
+const DEV_TOKEN1 = process.env.NEXT_PUBLIC_DEV_TOKEN1;
+const DEV_PET1 = process.env.NEXT_PUBLIC_DEV_PET1;
+const DEV_OS = process.env.NEXT_PUBLIC_DEV_OS;
+const DEV_VERSION = process.env.NEXT_PUBLIC_DEV_VERSION;
 
 const Add = () => {
   const { register, handleSubmit } = useForm();
