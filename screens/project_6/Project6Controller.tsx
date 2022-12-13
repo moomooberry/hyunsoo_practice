@@ -42,8 +42,22 @@ const ControllerSix = () => {
   const onClickAdd = () => {
     router.push("/add");
   };
+  const onClickEdit = (breathId: any) => {
+    router.push({
+      pathname: `edit`,
+      query: {
+        breathId,
+      },
+    });
+  };
 
-  return <ViewSix breathData={breathData} onClickAdd={onClickAdd} />;
+  return (
+    <ViewSix
+      breathData={breathData}
+      onClickAdd={onClickAdd}
+      onClickEdit={onClickEdit}
+    />
+  );
 };
 
 export default ControllerSix;

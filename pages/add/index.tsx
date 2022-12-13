@@ -4,45 +4,45 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import moo from "../api/axios";
 
-const Continer = styled.form`
+export const Continer = styled.form`
   display: flex;
   flex-direction: column;
   background-color: aliceblue;
 `;
-const TitleWhen = styled.div`
+export const TitleWhen = styled.div`
   padding: 10px 0px 10px 10px;
 `;
-const DateTimeContainer = styled.div`
+export const DateTimeContainer = styled.div`
   display: flex;
   padding: 0px 0px 0px 10px;
   width: 400px;
   display: flex;
 `;
-const DateAdd = styled.input`
+export const DateAdd = styled.input`
   width: 200px;
   height: 20px;
   margin-right: 30px;
 `;
-const TimeAdd = styled.input`
+export const TimeAdd = styled.input`
   width: 200px;
   height: 20px;
 `;
-const TitleBreath = styled.div`
+export const TitleBreath = styled.div`
   padding: 10px 0px 10px 10px;
 `;
-const BreathContainer = styled.div`
+export const BreathContainer = styled.div`
   display: flex;
   padding: 0px 0px 0px 10px;
   width: 250px;
   display: flex;
   margin-bottom: 10px;
 `;
-const BreathAdd = styled.input`
+export const BreathAdd = styled.input`
   width: 100px;
   height: 20px;
 `;
 
-const SubmitButton = styled.button`
+export const SubmitButton = styled.button`
   width: 100px;
   height: 30px;
   display: flex;

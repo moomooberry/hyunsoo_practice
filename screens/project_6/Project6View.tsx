@@ -6,6 +6,10 @@ const BreathContainer = styled.div`
   justify-content: space-around;
   padding: 20px 5px 20px 5px;
   border-bottom: 1px solid black;
+  &:hover {
+    cursor: pointer;
+    background-color: yellow;
+  }
 `;
 const MeasureDate = styled.div``;
 const BreathCnt = styled.div``;
@@ -30,9 +34,11 @@ const AddButton = styled.div`
 const ViewSix = ({
   breathData,
   onClickAdd,
+  onClickEdit,
 }: {
   breathData: IBreathData[] | null;
   onClickAdd: () => void;
+  onClickEdit: (breathId: any) => void;
 }) => {
   console.log(breathData);
   return (
@@ -43,11 +49,23 @@ const ViewSix = ({
         <BreathCnt>호흡수</BreathCnt>
       </BreathContainer>
       {breathData?.map((item, index) => {
+        const { measureDate } = item;
         return (
           <div key={index}>
-            <BreathContainer>
-              <MeasureDate>{item.measureDate}</MeasureDate>
-              <BreathCnt>{item.breathCnt}</BreathCnt>
+            <BreathContainer onClick={() => onClickEdit(item.breathId)}>
+              <MeasureDate>
+                {measureDate.slice(0, 4) +
+                  "년 " +
+                  measureDate.slice(4, 6) +
+                  "월 " +
+                  measureDate.slice(6, 8) +
+                  "일 " +
+                  measureDate.slice(8, 10) +
+                  "시 " +
+                  measureDate.slice(10, 12) +
+                  "분"}
+              </MeasureDate>
+              <BreathCnt>{item.breathCnt + " 회"}</BreathCnt>
             </BreathContainer>
           </div>
         );
