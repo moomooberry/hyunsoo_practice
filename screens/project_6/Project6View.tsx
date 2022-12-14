@@ -49,10 +49,10 @@ const ViewSix = ({
         <BreathCnt>호흡수</BreathCnt>
       </BreathContainer>
       {breathData?.map((item, index) => {
-        const { measureDate } = item;
+        const { measureDate, breathCnt, breathId } = item;
         return (
           <div key={index}>
-            <BreathContainer onClick={() => onClickEdit(item.breathId)}>
+            <BreathContainer onClick={() => onClickEdit(breathId)}>
               <MeasureDate>
                 {measureDate.slice(0, 4) +
                   "년 " +
@@ -65,7 +65,7 @@ const ViewSix = ({
                   measureDate.slice(10, 12) +
                   "분"}
               </MeasureDate>
-              <BreathCnt>{item.breathCnt + " 회"}</BreathCnt>
+              <BreathCnt>{breathCnt + " 회"}</BreathCnt>
             </BreathContainer>
           </div>
         );
