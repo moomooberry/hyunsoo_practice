@@ -21,21 +21,28 @@ const DEV_PET1 = process.env.NEXT_PUBLIC_DEV_PET1;
 const DEV_OS = process.env.NEXT_PUBLIC_DEV_OS;
 const DEV_VERSION = process.env.NEXT_PUBLIC_DEV_VERSION;
 
+export interface IData {
+  breath: string;
+  date: string;
+  time: string;
+}
+
 const edit = (props: any) => {
   const [breathData, setBreathData] = useState<IBreathData[] | null>(null);
   // const [id, setId] = useState("");
   const { breathId } = props;
-
-  const { register, handleSubmit } = useForm();
-  const onSubmit = (data: any) => {
+  //
+  const { register, handleSubmit } = useForm<IData>();
+  const onSubmit = (data: IData) => {
+    const { breath, date, time } = data;
     moo
       .put(
         `/breath/${breathId}`,
         {
-          breathCnt: data.breath,
+          breathCnt: breath,
           measureDate:
-            data.date.slice(0, 10).replace(/-/g, "") +
-            data.time.slice(0, 5).replace(/:/g, "") +
+            date.slice(0, 10).replace(/-/g, "") +
+            time.slice(0, 5).replace(/:/g, "") +
             "00",
         },
         {
