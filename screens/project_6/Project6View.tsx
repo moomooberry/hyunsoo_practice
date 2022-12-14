@@ -38,7 +38,7 @@ const ViewSix = ({
 }: {
   breathData: IBreathData[] | null;
   onClickAdd: () => void;
-  onClickEdit: (breathId: any) => void;
+  onClickEdit: (breathId: number) => void;
 }) => {
   console.log(breathData);
   return (

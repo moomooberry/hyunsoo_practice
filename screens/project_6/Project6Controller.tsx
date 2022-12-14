@@ -1,6 +1,6 @@
+import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import Add from "../../pages/add";
 import moo from "../../pages/api/axios";
 import ViewSix from "./Project6View";
 
@@ -16,12 +16,16 @@ export interface IBreathData {
   breathLevelNm: string;
   measureDate: string;
   petAge: number;
-  petAgeLevel: any;
+  petAgeLevel: string;
   petId: string;
 }
 
 const ControllerSix = () => {
-  // const initialSetting = () => {};
+  //test dayjs library
+  const now = dayjs(Date.now());
+  const nowFormat = now.format("YYYYMMDDHHmmss");
+  console.log(nowFormat);
+
   const [breathData, setBreathData] = useState<IBreathData[] | null>(null);
   const router = useRouter();
   useEffect(() => {
@@ -42,7 +46,7 @@ const ControllerSix = () => {
   const onClickAdd = () => {
     router.push("/add");
   };
-  const onClickEdit = (breathId: any) => {
+  const onClickEdit = (breathId: number) => {
     router.push({
       pathname: `edit`,
       query: {
