@@ -27,7 +27,11 @@ export interface IData {
   time: string;
 }
 
-const edit = (props: any) => {
+export interface Iprops {
+  breathId: number;
+}
+
+const edit = (props: Iprops) => {
   const [breathData, setBreathData] = useState<IBreathData[] | null>(null);
   // const [id, setId] = useState("");
   const { breathId } = props;
