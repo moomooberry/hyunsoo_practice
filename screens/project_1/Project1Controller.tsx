@@ -1,7 +1,7 @@
-import View from "./Project1View";
+import ViewOne from "./Project1View";
 
-const Controller = () => {
-  return <View />;
+const ControllerOne = () => {
+  return <ViewOne />;
 };
 
-export default Controller;
+export default ControllerOne;

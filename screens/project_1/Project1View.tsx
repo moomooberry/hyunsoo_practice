@@ -1,5 +1,5 @@
-const View = () => {
+const ViewOne = () => {
   return <h1>hi</h1>;
 };
 
-export default View;
+export default ViewOne;
