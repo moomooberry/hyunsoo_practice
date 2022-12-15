@@ -6,9 +6,9 @@ const ControllerSeven = () => {
   const click = useRef(0);
   const fruits = useRef(["딸기", "포도", "사과"]);
   const toggleClick = useCallback(() => {
-    console.log(fruits);
-    console.log(toggle);
-    console.log(click);
+    //console.log(fruits);
+    //console.log(toggle);
+    //console.log(click);
     if (toggle === "✅") {
       setToggle("❌");
     } else {
