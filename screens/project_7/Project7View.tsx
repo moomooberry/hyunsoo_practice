@@ -1,19 +1,30 @@
 import { MutableRefObject } from "react";
 import { UseQueryResult } from "react-query";
 import ProjectSevenComponents from "./components";
+import { ApiData } from "./Project7Controller";
 
 interface IViewProps {
   toggleClick: () => void;
   toggle: string;
   click: MutableRefObject<number>;
-  data: any;
-  moo: any;
+  apiData: ApiData | null;
+  status: "idle" | "error" | "loading" | "success";
 }
 
-const ViewSeven = ({ toggleClick, toggle, click, data, moo }: IViewProps) => {
-  console.log(moo);
+const ViewSeven = ({
+  toggleClick,
+  toggle,
+  click,
+  apiData,
+  status,
+}: IViewProps) => {
+  console.log(apiData);
   return (
     <div>
+      <div>상태 : {status}</div>
+      <div> {apiData?.bannerGbn}</div>
+      <div> {apiData?.title}</div>
+      <div> {apiData?.body}</div>
       <ProjectSevenComponents.Container>
         <ProjectSevenComponents.BoxContainer onClick={toggleClick}>
           <ProjectSevenComponents.Box>{toggle}</ProjectSevenComponents.Box>
