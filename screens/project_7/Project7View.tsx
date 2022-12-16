@@ -1,3 +1,4 @@
+import { AxiosError } from "axios";
 import { MutableRefObject } from "react";
 import { UseQueryResult } from "react-query";
 import ProjectSevenComponents from "./components";
@@ -9,6 +10,7 @@ interface IViewProps {
   click: MutableRefObject<number>;
   apiData: ApiData | null;
   status: "idle" | "error" | "loading" | "success";
+  error: AxiosError | null;
 }
 
 const ViewSeven = ({
@@ -17,14 +19,16 @@ const ViewSeven = ({
   click,
   apiData,
   status,
+  error,
 }: IViewProps) => {
   console.log(apiData);
   return (
     <div>
-      <div>상태 : {status}</div>
+      <div> 상태 : {status}...</div>
       <div> {apiData?.bannerGbn}</div>
       <div> {apiData?.title}</div>
       <div> {apiData?.body}</div>
+      <div> {error?.message}</div>
       <ProjectSevenComponents.Container>
         <ProjectSevenComponents.BoxContainer onClick={toggleClick}>
           <ProjectSevenComponents.Box>{toggle}</ProjectSevenComponents.Box>
