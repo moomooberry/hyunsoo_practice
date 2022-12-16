@@ -83,7 +83,7 @@ const Add = () => {
           },
         }
       )
-      .then(() => router.push("/"));
+      .then(() => router.push("/project/project_6"));
   };
 
   return (

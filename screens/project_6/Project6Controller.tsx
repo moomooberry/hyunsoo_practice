@@ -48,7 +48,7 @@ const ControllerSix = () => {
   };
   const onClickEdit = (breathId: number) => {
     router.push({
-      pathname: `edit`,
+      pathname: `/edit`,
       query: {
         breathId,
       },

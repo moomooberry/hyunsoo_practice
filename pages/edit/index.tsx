@@ -57,7 +57,7 @@ const edit = (props: Iprops) => {
           },
         }
       )
-      .then(() => router.push("/"));
+      .then(() => router.push("/project/project_6"));
   };
 
   const router = useRouter();
