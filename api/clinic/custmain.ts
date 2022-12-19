@@ -1,4 +1,4 @@
-import mooApi from "../axios";
+import mooApi from "../mooApi";
 
 const DEV_TOKEN1 = process.env.NEXT_PUBLIC_DEV_TOKEN1;
 

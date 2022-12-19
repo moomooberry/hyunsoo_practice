@@ -1,8 +1,8 @@
-import { AxiosError } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { MutableRefObject } from "react";
-import { UseQueryResult } from "react-query";
+import { UseMutationResult } from "react-query";
 import ProjectSevenComponents from "./components";
-import { ApiData } from "./Project7Controller";
+import { ApiData, ConsultData } from "./Project7Controller";
 
 interface IViewProps {
   toggleClick: () => void;
@@ -11,6 +11,10 @@ interface IViewProps {
   apiData: ApiData | null;
   status: "idle" | "error" | "loading" | "success";
   error: AxiosError | null;
+  consultData: ConsultData[] | null;
+  consultHistoryStatus: "idle" | "error" | "loading" | "success";
+  consultHistoryError: AxiosError | null;
+  onClickConsult: (consultId: any) => void;
 }
 
 const ViewSeven = ({
@@ -20,8 +24,12 @@ const ViewSeven = ({
   apiData,
   status,
   error,
+  consultData,
+  consultHistoryStatus,
+  consultHistoryError,
+  onClickConsult,
 }: IViewProps) => {
-  console.log(apiData);
+  //console.log(apiData);
   return (
     <div>
       <div> 상태 : {status}...</div>
@@ -39,6 +47,17 @@ const ViewSeven = ({
           </ProjectSevenComponents.Box>
         </ProjectSevenComponents.BoxContainer>
       </ProjectSevenComponents.Container>
+      <>
+        {consultData?.map((item, index) => {
+          return (
+            <div key={index} onClick={() => onClickConsult(item.consultId)}>
+              <div>
+                {item.consultId} | {item.expertName} | {item.petName}
+              </div>
+            </div>
+          );
+        })}
+      </>
     </div>
   );
 };

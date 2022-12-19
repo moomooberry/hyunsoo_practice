@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import moo from "../../pages/api/axios";
+import moo from "../../api/mooApi";
 import ViewSix from "./Project6View";
 
 const DEV_TOKEN1 = process.env.NEXT_PUBLIC_DEV_TOKEN1;
