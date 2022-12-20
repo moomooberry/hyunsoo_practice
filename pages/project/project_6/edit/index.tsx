@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { IBreathData } from "../../screens/project_6_get_put_post/Project6Controller";
+import { IBreathData } from "../../../../screens/project_6_get_put_post/Project6Controller";
 import {
   BreathAdd,
   BreathContainer,
@@ -14,7 +14,7 @@ import {
   TitleBreath,
   TitleWhen,
 } from "../add";
-import moo from "../../api/mooApi";
+import moo from "../../../../api/moo";
 
 const DEV_TOKEN1 = process.env.NEXT_PUBLIC_DEV_TOKEN1;
 const DEV_PET1 = process.env.NEXT_PUBLIC_DEV_PET1;

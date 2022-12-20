@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import moo from "../../api/mooApi";
 import ViewSix from "./Project6View";
 
@@ -43,17 +43,21 @@ const ControllerSix = () => {
   }, []);
   console.log(breathData);
 
-  const onClickAdd = () => {
-    router.push("/add");
-  };
-  const onClickEdit = (breathId: number) => {
-    router.push({
-      pathname: `/edit`,
-      query: {
-        breathId,
-      },
-    });
-  };
+  const onClickAdd = useCallback(() => {
+    router.push("/project/project_6/add");
+  }, [router]);
+
+  const onClickEdit = useCallback(
+    (breathId: number) => {
+      router.push({
+        pathname: `/project/project_6/edit`,
+        query: {
+          breathId,
+        },
+      });
+    },
+    [router]
+  );
 
   return (
     <ViewSix

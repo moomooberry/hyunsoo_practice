@@ -1,5 +1,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { QueryClient, useMutation, useQuery } from "react-query";
+import {
+  QueryClient,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "react-query";
 import ViewSeven from "./Project7View";
 
 import apiFetchGet from "../../api/clinic/custmain";
@@ -7,6 +12,10 @@ import { AxiosError } from "axios";
 import getConsultHistory from "../../api/clinic/getConsultHistory";
 import { useRouter } from "next/router";
 import deleteConsultHistory from "../../api/clinic/deleteConsultHistory";
+import { createStore } from "redux";
+import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { useDispatch, useSelector } from "react-redux";
+import { increseCount } from "../../store/reducers/counter";
 
 export interface ApiData {
   bannerGbn: string;
@@ -57,6 +66,7 @@ const ControllerSeven = () => {
   const [consultData, setConsultData] = useState<ConsultData[] | null>(null);
 
   const router = useRouter();
+  const queryClient = useQueryClient();
 
   const toggleClick = useCallback(() => {
     if (toggle === "✅") {
@@ -83,15 +93,68 @@ const ControllerSeven = () => {
     onSuccess: (data) => setConsultData(data.data.result),
   });
 
+  const consultHistoryDelete = useMutation({
+    mutationKey: "consultHistoryMutation",
+    mutationFn: deleteConsultHistory,
+    onSuccess: () => {
+      queryClient.invalidateQueries("consultHistoryQuery");
+    },
+  });
+
   const onClickConsult = useCallback((consultId: any) => {
-    deleteConsultHistory(consultId);
-    window.location.replace("/project/project_7");
+    console.log(consultId);
+    consultHistoryDelete.mutate(consultId);
   }, []);
 
   // const onClickConsult = useMutation({
   //   mutationFn: deleteConsultHistory,
   //   onSuccess: (data) => console.log(data),
   // });
+
+  //@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+  // const counterReducer = (state = { value: 0 }, action: any) => {
+  //   switch (action.type) {
+  //     case "counter/incremented":
+  //       return { value: state.value + 1 };
+  //     case "counter/decremented":
+  //       return { value: state.value - 1 };
+  //     default:
+  //       return state;
+  //   }
+  // };
+
+  // let store = createStore(counterReducer);
+  // store.subscribe(() => console.log(store.getState()));
+
+  // store.dispatch({ type: "counter/incremented" });
+  // store.dispatch({ type: "couner/incremented" });
+  // store.dispatch({ type: "counter/decremented" });
+
+  // const counterSlice = createSlice({
+  //   name: "counter",
+  //   initialState: { value: 0 },
+  //   reducers: {
+  //     incremented: (state) => {
+  //       state.value += 1;
+  //     },
+  //     decremented: (state) => {
+  //       state.value -= 1;
+  //     },
+  //   },
+  // });
+
+  // const { incremented, decremented } = counterSlice.actions;
+
+  // const store = configureStore({
+  //   reducer: counterSlice.reducer,
+  // });
+
+  // store.subscribe(() => console.log(store.getState()));
+
+  // store.dispatch(incremented());
+  // store.dispatch(incremented());
+  // store.dispatch(decremented());
 
   const viewProps = {
     toggleClick,

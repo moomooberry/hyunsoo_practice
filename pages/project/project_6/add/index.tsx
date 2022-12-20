@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import moo from "../../api/mooApi";
+import moo from "../../../../api/moo";
 
 export const Continer = styled.form`
   display: flex;
