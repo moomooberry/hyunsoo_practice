@@ -1,8 +1,5 @@
-import { AxiosError, AxiosResponse } from "axios";
-import { MutableRefObject, useState } from "react";
-import { UseMutationResult } from "react-query";
-import { useSelector } from "react-redux";
-import { store } from "../../store";
+import { AxiosError } from "axios";
+import { MutableRefObject } from "react";
 import ProjectSevenComponents from "./components";
 import { ApiData, ConsultData } from "./Project7Controller";
 

@@ -58,16 +58,19 @@ type EpliogState =
   | "ERR";
 
 const ControllerSeven = () => {
-  const [toggle, setToggle] = useState("✅");
-  //const [moo, setMoo] = useState(null);
-  const click = useRef(0);
-  //const fruits = useRef(["딸기", "포도", "사과"]);
-  const [apiData, setApiData] = useState<ApiData | null>(null);
-  // const [statusEmoji, setStatusEmoji] = useState("🟡");
-  const [consultData, setConsultData] = useState<ConsultData[] | null>(null);
+  /* react */
 
-  const router = useRouter();
-  const queryClient = useQueryClient();
+  //const [moo, setMoo] = useState(null);
+  //const fruits = useRef(["딸기", "포도", "사과"]);
+  // const [statusEmoji, setStatusEmoji] = useState("🟡");
+
+  const [toggle, setToggle] = useState("✅");
+
+  const click = useRef(0);
+
+  const [apiData, setApiData] = useState<ApiData | null>(null);
+
+  const [consultData, setConsultData] = useState<ConsultData[] | null>(null);
 
   const toggleClick = useCallback(() => {
     if (toggle === "✅") {
@@ -78,10 +81,18 @@ const ControllerSeven = () => {
     click.current++;
   }, [toggle]);
 
+  /* router */
+
+  const router = useRouter();
+
+  /* query */
+
+  const queryClient = useQueryClient();
+
   const { status, data, error } = useQuery<any, AxiosError | null>({
     queryKey: "mooApiQueryTest",
     queryFn: apiFetchGet,
-    onSuccess: (data) => setApiData(data.result.banner), // 전역처리할 예정 dispatch redux
+    onSuccess: (data) => setApiData(data.result.banner),
   });
 
   const {
@@ -107,6 +118,8 @@ const ControllerSeven = () => {
     consultHistoryDelete.mutate(consultId);
   }, []);
 
+  /* store */
+
   const storeCount = useSelector<RootState>(
     (state) => state.rootReducer.counter.value
   );
@@ -120,6 +133,8 @@ const ControllerSeven = () => {
     console.log(storeCount);
     console.log(storeName);
   };
+
+  /* viewProps */
 
   const viewProps = {
     toggleClick,
