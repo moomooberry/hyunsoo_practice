@@ -1,6 +1,8 @@
 import { AxiosError, AxiosResponse } from "axios";
-import { MutableRefObject } from "react";
+import { MutableRefObject, useState } from "react";
 import { UseMutationResult } from "react-query";
+import { useSelector } from "react-redux";
+import { store } from "../../store";
 import ProjectSevenComponents from "./components";
 import { ApiData, ConsultData } from "./Project7Controller";
 
@@ -15,6 +17,8 @@ interface IViewProps {
   consultHistoryStatus: "idle" | "error" | "loading" | "success";
   consultHistoryError: AxiosError | null;
   onClickConsult: (consultId: any) => void;
+  storeCount: any;
+  onClickCount: () => void;
 }
 
 const ViewSeven = ({
@@ -28,6 +32,8 @@ const ViewSeven = ({
   consultHistoryStatus,
   consultHistoryError,
   onClickConsult,
+  storeCount,
+  onClickCount,
 }: IViewProps) => {
   //console.log(apiData);
   return (
@@ -60,11 +66,13 @@ const ViewSeven = ({
               {click.current}
             </ProjectSevenComponents.Box>
           </ProjectSevenComponents.BoxContainer>
-          <ProjectSevenComponents.BoxContainer>
+          <ProjectSevenComponents.BoxContainer onClick={onClickCount}>
             <ProjectSevenComponents.Box>click</ProjectSevenComponents.Box>
           </ProjectSevenComponents.BoxContainer>
           <ProjectSevenComponents.BoxContainer>
-            <ProjectSevenComponents.Box>0</ProjectSevenComponents.Box>
+            <ProjectSevenComponents.Box>
+              {storeCount}
+            </ProjectSevenComponents.Box>
           </ProjectSevenComponents.BoxContainer>
         </ProjectSevenComponents.BoxContainerContainer>
       </ProjectSevenComponents.Container>
