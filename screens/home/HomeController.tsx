@@ -1,10 +1,13 @@
+import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import token, { setToken } from "../../store/reducers/token";
 import HomeView from "./HomeView";
 
-const HomeController = () => {
+const HomeController = ({ token }: { token: string }) => {
   const router = useRouter();
-
   const onClickOne = useCallback(() => {
     router.push(`/project/project_1`);
   }, [router]);
@@ -33,6 +36,17 @@ const HomeController = () => {
     router.push(`/project/project_7`);
   }, [router]);
 
+  /* store */
+  const tokenStore = useSelector<RootState>(
+    (state) => state.rootReducer.token.token
+  );
+
+  const dispatch = useDispatch();
+
+  const onClickToken = () => {
+    dispatch(setToken(token));
+  };
+
   const viewProps = {
     onClickOne,
     onClickTwo,
@@ -41,6 +55,8 @@ const HomeController = () => {
     onClickFive,
     onClickSix,
     onClickSeven,
+    onClickToken,
+    tokenStore,
   };
 
   return <HomeView {...viewProps} />;

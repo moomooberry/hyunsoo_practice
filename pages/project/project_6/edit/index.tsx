@@ -28,7 +28,7 @@ export interface IData {
 }
 
 export interface Iprops {
-  breathId: number;
+  breathId: string;
 }
 
 const edit = (props: Iprops) => {
@@ -102,8 +102,11 @@ const edit = (props: Iprops) => {
 export const getServerSideProps: GetServerSideProps = async (data) => {
   const {
     query: { breathId },
+    params,
   } = data;
-  console.log(breathId);
+  console.log("타입은 " + typeof breathId);
+  console.log("param은 " + params);
+  // console.log(params);
   return {
     props: {
       breathId,
