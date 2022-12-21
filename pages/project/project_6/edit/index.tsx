@@ -106,6 +106,12 @@ export const getServerSideProps: GetServerSideProps = async (data) => {
   } = data;
   console.log("타입은 " + typeof breathId);
   console.log("param은 " + params);
+
+  const token = data.req.cookies["moo-token"];
+  if (!token)
+    return {
+      redirect: { destination: "/", permanent: false },
+    };
   // console.log(params);
   return {
     props: {

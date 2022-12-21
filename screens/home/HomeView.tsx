@@ -1,4 +1,3 @@
-import { idText, Token } from "typescript";
 import HomeComponents from "./components";
 
 interface IViewProps {
@@ -10,7 +9,7 @@ interface IViewProps {
   onClickSix: () => void;
   onClickSeven: () => void;
   onClickToken: () => void;
-  tokenStore: any;
+  isAuth: boolean;
 }
 const HomeView = ({
   onClickOne,
@@ -21,9 +20,9 @@ const HomeView = ({
   onClickSix,
   onClickSeven,
   onClickToken,
-  tokenStore,
+  isAuth,
 }: IViewProps) => {
-  if (!tokenStore) {
+  if (isAuth === false) {
     console.log("Please Token First");
   }
   return (
@@ -33,7 +32,7 @@ const HomeView = ({
       </HomeComponents.TokenButton>
       <HomeComponents.Title>Home</HomeComponents.Title>
       <HomeComponents.ProjectContainer>
-        {tokenStore ? (
+        {isAuth ? (
           <>
             <HomeComponents.ProjectTitleContainer onClick={onClickOne}>
               <HomeComponents.ProjectTitleBox>1</HomeComponents.ProjectTitleBox>
